@@ -1,0 +1,12 @@
+{
+  "name": "artadmin-mobile",
+  "displayName": "artadmin-mobile",
+  "expo": {
+    "name": "artadmin-mobile",
+    "slug": "artadmin-mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
