@@ -2,9 +2,9 @@ import * as React from 'react'
 import { Text, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import ProductsScreen from './src/screens/Products/List'
-import ClientsScreen from './src/screens/Clients/List'
-import OrdersScreen from './src/screens/Orders/List'
+import ProductsScreen from './src/Screens/Products/Navigator'
+import ClientsScreen from './src/Screens/Clients/List'
+import OrdersScreen from './src/Screens/Orders/List'
 import { AntDesign, Octicons } from '@expo/vector-icons'
 
 const Tab = createBottomTabNavigator()
