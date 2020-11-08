@@ -1,0 +1,1 @@
+export const apiUrl = 'http://artadmin-api.herokuapp.com'

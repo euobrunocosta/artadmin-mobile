@@ -1,8 +1,9 @@
 import axios from 'axios'
 import handleErrors from './handleErrors'
+import { apiUrl } from '../Utils/Common'
 
 const apiInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL
+  baseURL: apiUrl
 })
 
 export const setAuth = (token: string) => {
