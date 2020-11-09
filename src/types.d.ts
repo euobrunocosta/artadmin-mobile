@@ -15,3 +15,20 @@ type TUser = {
   createdAt: Date
   updatedAt: Date
 }
+
+type TProduct = {
+  _id: string
+  title: string
+  boughtBy: TBoughBy
+  price: number
+  width: number
+  enabled: boolean
+  user: TUser
+  createdAt: Date
+  updatedAt: Date
+}
+
+type TSort = {
+  column: string
+  order: 'asc' | 'desc'
+}
