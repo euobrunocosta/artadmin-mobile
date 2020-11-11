@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react'
-import { FlatList, ActivityIndicator } from 'react-native'
+import { FlatList, ActivityIndicator, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { StackNavigationProp } from '@react-navigation/stack'
 import styled from 'styled-components/native'
@@ -14,6 +14,22 @@ const LoaderContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+`
+
+const Button = styled.View`
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #2185d0;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+`
+
+const ButtonText = styled.Text`
+  color: #2185d0;
+  line-height: 45px;
+  font-weight: bold;
+  font-size: 16px;
 `
 
 type TProps = {
@@ -77,6 +93,10 @@ const ProductsListScreen = ({ navigation }: TProps) => {
     getData()
   }, [search])
 
+  const onPressLoadMore = async () => {
+    await getData(list.length)
+  }
+
   return (
     <>
       {isLoading ? (
@@ -91,6 +111,13 @@ const ProductsListScreen = ({ navigation }: TProps) => {
             return <Item item={item} />
           }}
         />
+      )}
+      {showLoadMore && (
+        <TouchableOpacity onPress={onPressLoadMore} disabled={isLoading}>
+          <Button>
+            <ButtonText>Load more</ButtonText>
+          </Button>
+        </TouchableOpacity>
       )}
     </>
   )
