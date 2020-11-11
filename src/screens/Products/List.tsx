@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, ActivityIndicator } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { StackNavigationProp } from '@react-navigation/stack'
 import styled from 'styled-components/native'
@@ -8,6 +8,12 @@ import Item from './Item'
 
 const IconButton = styled.TouchableOpacity`
   margin-right: 15px;
+`
+
+const LoaderContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `
 
 type TProps = {
@@ -72,13 +78,21 @@ const ProductsListScreen = ({ navigation }: TProps) => {
   }, [search])
 
   return (
-    <FlatList
-      data={list}
-      keyExtractor={(item) => item._id}
-      renderItem={({ item }) => {
-        return <Item item={item} />
-      }}
-    />
+    <>
+      {isLoading ? (
+        <LoaderContainer>
+          <ActivityIndicator size="large" color="#2185d0" />
+        </LoaderContainer>
+      ) : (
+        <FlatList
+          data={list}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => {
+            return <Item item={item} />
+          }}
+        />
+      )}
+    </>
   )
 }
 
