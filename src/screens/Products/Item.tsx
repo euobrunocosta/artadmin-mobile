@@ -1,7 +1,8 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 import { formatNumberToCurrency } from '../../Utils/Helpers'
+import { FontAwesome5 } from '@expo/vector-icons'
 
 const Container = styled.View`
   padding: 20px;
@@ -10,6 +11,7 @@ const Container = styled.View`
   border-bottom-width: 1px;
   border-style: solid;
   justify-content: space-between;
+  align-items: center;
   flex-direction: row;
 `
 
@@ -20,15 +22,25 @@ const Text = styled.Text`
 
 type TProps = {
   item: TProduct
+  deleteProduct(id: string): void
 }
 
 const ProductItem = (props: TProps) => {
-  const { item } = props
+  const { item, deleteProduct } = props
+
+  const onPressDeleteProduct = () => {
+    deleteProduct(item._id)
+  }
 
   return (
     <Container>
-      <Text>{item.title}</Text>
-      <Text>{formatNumberToCurrency(item.price)}</Text>
+      <View>
+        <Text>{item.title}</Text>
+        <Text>{formatNumberToCurrency(item.price)}</Text>
+      </View>
+      <TouchableOpacity onPress={onPressDeleteProduct}>
+        <FontAwesome5 name="trash-alt" size={24} color="black" />
+      </TouchableOpacity>
     </Container>
   )
 }

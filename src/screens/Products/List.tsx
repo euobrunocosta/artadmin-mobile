@@ -97,6 +97,13 @@ const ProductsListScreen = ({ navigation }: TProps) => {
     await getData(list.length)
   }
 
+  const deleteProduct = async (id: string) => {
+    const response = await api.delete(`/products/${id}`)
+    if (!response) return
+    const _list = list.filter((item) => item._id !== id)
+    setList(_list)
+  }
+
   return (
     <>
       {isLoading ? (
@@ -108,7 +115,7 @@ const ProductsListScreen = ({ navigation }: TProps) => {
           data={list}
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => {
-            return <Item item={item} />
+            return <Item item={item} deleteProduct={deleteProduct} />
           }}
         />
       )}
